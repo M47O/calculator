@@ -1,0 +1,261 @@
+:root {
+	--background: #f6f6f6;
+	--font: #222;
+	--border: #333;
+	--screen: #eee;
+	--calculator: #aaa;
+	--btn: #eee;
+	--btn-hover: #ddd;
+	--btn-active: #ccc;
+	--btn-red: #faa;
+	--btn-red-hover: #e99;
+	--btn-red-active: #d88;
+	--btn-blue: #aaf;
+	--btn-blue-hover: #99e;
+	--btn-blue-active: #88d;
+	--btn-operation: #ee9;
+	--btn-operation-hover: #dd8;
+	--btn-operation-active: #cc7;
+	--border-size: 2px;
+	--border-radius: 5px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+button {
+	border: none;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	cursor: pointer;
+	outline: none;
+}
+
+body {
+	position: relative;
+	height: 100vh;
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background-color: var(--background);
+	color: var(--font);
+	font-family: "Roboto", sans-serif;
+}
+
+/* HEADER */
+
+header {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr 1fr 1fr;
+	position: fixed;
+	padding: 20px 36px;
+	width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+header h2 {
+	position: relative;
+	font-size: 42px;
+	cursor: default;
+	user-select: none;
+	letter-spacing: -30px;
+	width: 39px;
+	transition: letter-spacing 3s ease-in-out;
+}
+
+header h2:hover {
+	letter-spacing: -2px;
+	transition: letter-spacing 3s 0.3s ease-in-out;
+}
+
+header h2::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0px;
+	bottom: 0px;
+	left: -4px;
+	right: -4px;
+	border: 2px solid var(--font);
+	border-radius: 50%;
+	transition: border 3s 1s ease-in-out;
+}
+
+header h2:hover::before {
+	border: 2px solid var(--background);
+	transition: border 2.5s ease-in-out;
+}
+
+header nav {
+	display: flex;
+	gap: 18px;
+	justify-content: center;
+	align-items: center;
+}
+
+header a {
+	position: relative;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: var(--font);
+	font-size: 26px;
+}
+
+header a::before {
+	position: absolute;
+	content: "";
+	top: -10px;
+	bottom: -10px;
+	left: -30px;
+	right: -30px;
+	z-index: -1;
+	border-radius: 18px;
+	background-color: #eee;
+	opacity: 0;
+	transition: opacity 0.5s;
+	pointer-events: none;
+}
+
+header a::after {
+	position: absolute;
+	content: "";
+	bottom: -10px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 30%;
+	height: 1px;
+	border-radius: 24px;
+	border: 1px solid var(--btn-blue);
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+header a:hover::before {
+	opacity: 1;
+}
+
+header a:hover::after {
+	opacity: 1;
+}
+
+header h1 {
+	justify-self: right;
+}
+
+/* END HEADER */
+
+main {
+	height: 100vh;
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.calculator {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	padding: 20px;
+	background-color: var(--calculator);
+	border: var(--border-size) solid var(--border);
+	border-radius: 7px;
+}
+
+.display {
+	display: flex;
+	font-family: "Michroma", monospace;
+	justify-content: flex-end;
+	align-items: center;
+	min-height: 96px;
+	font-size: 40px;
+	width: 100%;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+	background-color: var(--screen);
+	border: var(--border-size) solid var(--border);
+	border-radius: var(--border-radius);
+}
+
+.btngroup {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+}
+
+.btn {
+	font-size: 20px;
+	user-select: none;
+	cursor: pointer;
+	padding: 20px;
+	background-color: var(--btn);
+	border: var(--border-size) solid var(--border);
+	border-radius: var(--border-radius);
+}
+
+.btn:hover {
+	background-color: var(--btn-hover);
+}
+
+.btn:active {
+	background-color: var(--btn-active);
+}
+
+.btn-operation {
+	background-color: var(--btn-operation);
+}
+
+.btn-operation:hover {
+	background-color: var(--btn-operation-hover);
+}
+
+.btn-operation:active {
+	background-color: var(--btn-operation-active);
+}
+
+.btn-span {
+	grid-column: span 2;
+}
+
+.btn-clearEntry {
+	background-color: var(--btn-blue);
+}
+
+.btn-clearEntry:hover {
+	background-color: var(--btn-blue-hover);
+}
+
+.btn-clearEntry:active {
+	background-color: var(--btn-blue-active);
+}
+
+.btn-clear {
+	background-color: var(--btn-red);
+}
+
+.btn-clear:hover {
+	background-color: var(--btn-red-hover);
+}
+
+.btn-clear:active {
+	background-color: var(--btn-red-active);
+}
+
+.github-icon {
+	font-size: 25px;
+	color: var(--border);
+}
+
+.btn-github:hover .github-icon {
+	color: var(--font);
+}
