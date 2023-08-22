@@ -14,9 +14,11 @@ function buildOperand(numFromButton) {
         return;
     if (currentOperand === "first") {
         //Disable user from beginning operand with decimal and adding multiple decimals to operand
-        if (numFromButton === "." &&
-            (firstOperand.includes(".") || firstOperand === "")) {
-            return;
+        if (numFromButton === ".") {
+            if (firstOperand.includes("."))
+                return;
+            if (firstOperand === "")
+                firstOperand += "0";
         }
         //Limit operand length to 9 digits to prevent overflow
         if (firstOperand.length < 8) {
@@ -25,6 +27,12 @@ function buildOperand(numFromButton) {
         }
     }
     if (currentOperand === "second") {
+        if (numFromButton === ".") {
+            if (secondOperand.includes("."))
+                return;
+            if (secondOperand === "")
+                secondOperand += "0";
+        }
         if (secondOperand.length < 8) {
             secondOperand += numFromButton;
             display.textContent = secondOperand;
@@ -58,24 +66,32 @@ function evaluate() {
     ];
     switch (operation) {
         case "divide":
-            firstOperand = String((+firstOperand / +secondOperand).toFixed(2));
+            firstOperand = String(+firstOperand / +secondOperand);
             if (secondOperand === "0") {
                 firstOperand = divideByZeroResponses[divideByZeroCount];
                 divideByZeroResponses[divideByZeroCount + 1]
                     ? divideByZeroCount++
                     : (divideByZeroCount = 0);
-                console.log(divideByZeroCount);
             }
             break;
         case "multiply":
-            firstOperand = String((+firstOperand * +secondOperand).toFixed(2));
+            firstOperand = String(+firstOperand * +secondOperand);
             break;
         case "add":
-            firstOperand = String((+firstOperand + +secondOperand).toFixed(2));
+            firstOperand = String(+firstOperand + +secondOperand);
             break;
         case "subtract":
-            firstOperand = String((+firstOperand - +secondOperand).toFixed(2));
+            firstOperand = String(+firstOperand - +secondOperand);
             break;
+    }
+    if (firstOperand.includes(".") && firstOperand.split(".")[1].length > 3) {
+        let numberOperand = Number(firstOperand);
+        firstOperand = numberOperand.toFixed(3);
+    }
+    //If result is larger than 8 digits, convert to scientific notation
+    if (firstOperand.length > 8) {
+        let numberOperand = Number(firstOperand);
+        firstOperand = String(numberOperand.toExponential(2));
     }
     display.textContent = firstOperand;
     secondOperand = "";
