@@ -13,16 +13,22 @@ function buildOperand(numFromButton) {
     if (!numFromButton)
         return;
     if (currentOperand === "first") {
+        //Disable user from beginning operand with decimal and adding multiple decimals to operand
         if (numFromButton === "." &&
-            (Array(firstOperand).includes(".") || firstOperand === "")) {
+            (firstOperand.includes(".") || firstOperand === "")) {
             return;
         }
-        firstOperand += numFromButton;
-        display.textContent = firstOperand;
+        //Limit operand length to 9 digits to prevent overflow
+        if (firstOperand.length < 8) {
+            firstOperand += numFromButton;
+            display.textContent = firstOperand;
+        }
     }
     if (currentOperand === "second") {
-        secondOperand += numFromButton;
-        display.textContent = secondOperand;
+        if (secondOperand.length < 8) {
+            secondOperand += numFromButton;
+            display.textContent = secondOperand;
+        }
     }
 }
 function selectOperation(operationFromButton) {
