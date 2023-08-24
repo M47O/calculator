@@ -46,7 +46,10 @@ function selectOperation(operationFromButton: Operation) {
 		currentOperand = "second";
 	}
 
-	if (firstOperand && secondOperand) evaluate();
+	if (firstOperand && secondOperand) {
+		evaluate();
+		operation = operationFromButton;
+	}
 }
 
 let divideByZeroCount = 0;
@@ -70,14 +73,14 @@ function evaluate() {
 
 	switch (operation) {
 		case "divide":
-			firstOperand = String(+firstOperand / +secondOperand);
-
 			if (secondOperand === "0") {
 				firstOperand = divideByZeroResponses[divideByZeroCount];
 
 				divideByZeroResponses[divideByZeroCount + 1]
 					? divideByZeroCount++
 					: (divideByZeroCount = 0);
+			} else {
+				firstOperand = String(+firstOperand / +secondOperand);
 			}
 			break;
 		case "multiply":
@@ -90,13 +93,16 @@ function evaluate() {
 			firstOperand = String(+firstOperand - +secondOperand);
 			break;
 	}
+
+	console.log(firstOperand);
+
 	if (firstOperand.includes(".") && firstOperand.split(".")[1].length > 3) {
 		let numberOperand = Number(firstOperand);
 		firstOperand = numberOperand.toFixed(3);
 	}
 
 	//If result is larger than 8 digits, convert to scientific notation
-	if (firstOperand.length > 8) {
+	if (firstOperand.length > 8 && secondOperand != "0") {
 		let numberOperand: number = Number(firstOperand);
 		firstOperand = String(numberOperand.toExponential(2));
 	}
