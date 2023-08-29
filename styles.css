@@ -7,15 +7,18 @@
 	--btn: #eee;
 	--btn-hover: #ddd;
 	--btn-active: #ccc;
-	--btn-red: #faa;
-	--btn-red-hover: #e99;
-	--btn-red-active: #d88;
-	--btn-blue: #aaf;
-	--btn-blue-hover: #99e;
-	--btn-blue-active: #88d;
-	--btn-operation: #ee9;
-	--btn-operation-hover: #dd8;
-	--btn-operation-active: #cc7;
+	--btn-red: hsl(0, 100%, 83%);
+	--btn-red-hover: hsl(0, 71%, 77%);
+	--btn-red-active: hsl(0, 56%, 70%);
+	--btn-blue: hsl(240, 100%, 83%);
+	--btn-blue-hover: hsl(240, 71%, 77%);
+	--btn-blue-active: hsl(240, 56%, 70%);
+	--btn-operation: hsl(60, 100%, 83%);
+	--btn-operation-hover: hsl(60, 56%, 77%);
+	--btn-operation-active: hsl(60, 45%, 70%);
+	--btn-operation-current: hsl(36, 100%, 83%);
+	--btn-operation-current-hover: hsl(36, 71%, 77%);
+	--btn-operation-current-active: hsl(36, 56%, 70%);
 	--border-size: 2px;
 	--border-radius: 5px;
 }
@@ -187,6 +190,10 @@ main {
 	border-radius: var(--border-radius);
 }
 
+.display-text {
+	word-wrap: break-word;
+}
+
 .btngroup {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -221,6 +228,18 @@ main {
 
 .btn-operation:active {
 	background-color: var(--btn-operation-active);
+}
+
+.btn-operation-current {
+	background: var(--btn-operation-current);
+}
+
+.btn-operation-current:hover {
+	background: var(--btn-operation-current-hover);
+}
+
+.btn-operation-current:active {
+	background: var(--btn-operation-current-active);
 }
 
 .btn-span {
