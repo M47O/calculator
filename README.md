@@ -1,7 +1,7 @@
 # It's a calculator folks... don't get too excited.
 Just kidding, get pumped. This ain't your mama's ordinary ol' calculator. This is a fully functioning and responsive calculator that features operation chaining, fixed precision scientific overflow prevention[^1], unprecedented arithmetic accuracy[^2], strategic operational bookmarking[^3], and a fantastic journey through undefined territory.[^4] *TI-82 who?* 
 
-**Link to project:** [Click me and get to calculatin'!](http://m47o.github.io/)
+**Link to project:** [Click me and get to calculatin'!](http://m47o.github.io/calculator)
 
 ![Animated image of the calculator app being used](./CalculatorDemo.gif)
 
