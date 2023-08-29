@@ -43,11 +43,38 @@ function selectOperation(operationFromButton) {
     if (firstOperand && !secondOperand) {
         operation = operationFromButton;
         currentOperand = "second";
+        setActiveOperationButton();
+    }
+    if (!firstOperand && display.textContent) {
+        firstOperand = display.textContent;
+        operation = operationFromButton;
+        currentOperand = "second";
+        setActiveOperationButton();
     }
     if (firstOperand && secondOperand) {
         evaluate();
         operation = operationFromButton;
+        setActiveOperationButton();
     }
+    function setActiveOperationButton() {
+        operationButtons.forEach((button) => {
+            if (button instanceof HTMLElement) {
+                if (button.dataset["operation"] === operationFromButton) {
+                    button.classList.add("btn-operation-current");
+                }
+                else {
+                    button.classList.remove("btn-operation-current");
+                }
+            }
+        });
+    }
+}
+function clearActiveOperation() {
+    operationButtons.forEach((button) => {
+        if (button instanceof HTMLElement) {
+            button.classList.remove("btn-operation-current");
+        }
+    });
 }
 let divideByZeroCount = 0;
 function evaluate() {
@@ -59,12 +86,25 @@ function evaluate() {
         "that won't work",
         "you can't do that",
         "please stop...",
-        "undefeenied",
+        "defined",
+        "just kidding... still undefined",
+        "you're unforgiven",
+        "unfortunate",
+        "YOU UNDE-FOOL!",
+        "UNDE-PLEASE STOP!",
+        "I'm calculating your demise",
+        "you're persistent, I'll give you that",
+        "alright, pal...",
         "...",
         "you're killing me",
         "no more",
         ":(",
         "i give up",
+        "this is it",
+        "you're reaching the end",
+        "i'm running out of messages for you",
+        "take me home, country roads",
+        "Goodbye.",
     ];
     switch (operation) {
         case "divide":
@@ -100,6 +140,10 @@ function evaluate() {
     }
     display.textContent = firstOperand;
     secondOperand = "";
+    firstOperand = "";
+    currentOperand = "first";
+    operation = null;
+    clearActiveOperation();
 }
 function clear() {
     display.textContent = "";
@@ -107,6 +151,7 @@ function clear() {
     secondOperand = "";
     currentOperand = "first";
     operation = null;
+    clearActiveOperation();
 }
 function clearEntry() {
     currentOperand === "first" ? (firstOperand = "") : (secondOperand = "");
