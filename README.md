@@ -3,7 +3,10 @@ Just kidding, get pumped. This ain't your mama's ordinary ol' calculator. This i
 
 **Link to project:** [Click me and get to calculatin'!](http://m47o.github.io/calculator)
 
-![Animated image of the calculator app being used](./CalculatorDemo.gif)
+<div align="center">
+<img src="CalculatorDemo.gif" alt="Demo of portfolio site">
+</div>
+
 
 ## How It's Made:
 
